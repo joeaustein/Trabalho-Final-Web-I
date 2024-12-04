@@ -11,6 +11,26 @@ const listUserLists = async (req, res) => {
   }
 };
 
+// Obter uma lista pelo ID:
+const getListById = async (req, res) => {
+  const { listId } = req.params;
+  try {
+    // Consultar o banco de dados para obter a lista pelo ID
+    const list = await db.query("SELECT * FROM lists WHERE id = ?", [listId]);
+
+    // Verificar se a lista existe
+    if (list.length === 0) {
+      return res.status(404).json({ error: "Lista não encontrada." });
+    }
+
+    // Retornar a lista encontrada
+    res.json(list[0]);  // Retorna apenas a primeira (e única) lista
+  } catch (error) {
+    console.error("Erro ao obter lista:", error);
+    res.status(500).json({ error: "Erro ao obter lista." });
+  }
+};
+
 // Criar uma nova lista:
 const createList = async (req, res) => {
     const { user_id, name } = req.body;  // Alterei para user_id para corresponder ao corpo da requisição
@@ -81,30 +101,31 @@ const deleteList = async (req, res) => {
 
 // Listar os produtos de uma lista específica:
 const listProductsInList = async (req, res) => {
-    const { listId } = req.params;
-    try {
-      // Consulta SQL para listar os produtos com nome, quantidade (count), valor unitário e valor total
-      const products = await db.query(`
-        SELECT p.name AS product_name, 
-               COUNT(li.product_id) AS quantity, 
-               p.price AS "unit_value",
-               (p.price * COUNT(li.product_id)) AS "total_value"
-        FROM list_items li
-        JOIN products p ON li.product_id = p.id
-        WHERE li.list_id = ?
-        GROUP BY li.product_id, p.name, p.price`, [listId]);
-      // Verifica se a lista contém produtos
-      if (products.length === 0) {
-        return res.status(404).json({ error: "Nenhum produto encontrado para esta lista." });
-      }
-      // Retorna os produtos encontrados com suas respectivas quantidades, valor unitário e valor total
-      res.json(products);
-    } catch (error) {
-      console.error("Erro ao listar produtos da lista:", error);
-      res.status(500).json({ error: "Erro ao listar produtos da lista." });
+  const { listId } = req.params;
+  try {
+    // Consulta SQL para listar os produtos com ID, nome, quantidade, valor unitário e valor total
+    const products = await db.query(`
+      SELECT p.id AS product_id, 
+             p.name AS product_name, 
+             COUNT(li.product_id) AS quantity, 
+             p.price AS unit_value,
+             (p.price * COUNT(li.product_id)) AS total_value
+      FROM list_items li
+      JOIN products p ON li.product_id = p.id
+      WHERE li.list_id = ?
+      GROUP BY p.id, p.name, p.price`, [listId]); // Incluindo p.id no GROUP BY
+    // Verifica se a lista contém produtos
+    if (products.length === 0) {
+      return res.status(404).json({ error: "Nenhum produto encontrado para esta lista." });
     }
-  };
-  
+    // Retorna os produtos encontrados com ID, nome, quantidade, valor unitário e valor total
+    res.json(products);
+  } catch (error) {
+    console.error("Erro ao listar produtos da lista:", error);
+    res.status(500).json({ error: "Erro ao listar produtos da lista." });
+  }
+};
+
 // Calcular o valor total de uma lista:
 const calculateTotalValueOfList = async (req, res) => {
     const { listId } = req.params;
@@ -139,5 +160,6 @@ module.exports = {
   deleteList,
   listProductsInList, 
   calculateTotalValueOfList,
+  getListById,
 };
 

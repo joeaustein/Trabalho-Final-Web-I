@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Usuário</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+
+  <!-- Modal de sucesso -->
+  <div id="statusModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('statusModal')">&times;</span>
+      <p id="statusMessage"></p>
+    </div>
+  </div>
+  
+  <!-- Modal de erro -->
+  <div id="errorModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('errorModal')">&times;</span>
+      <p id="errorMessage"></p>
+    </div>
+  </div>
+  
+
+  <div class="container">
+    <h2>Olá, <span id="userName"></span></h2> <!-- Nome do usuário será preenchido via JS -->
+    
+    <h3>Listas</h3>
+    <div id="listContainer">
+      <!-- Listas serão carregadas aqui -->
+    </div>
+
+    <button id="createListButton">Criar Lista</button>
+    
+    <div id="createListSection" style="display: none;">
+      <input type="text" id="listName" placeholder="Nome da lista" />
+      <button id="submitListButton">Criar</button>
+    </div>
+  </div>
+
+  <script src="home.js"></script>
+</body>
+</html>

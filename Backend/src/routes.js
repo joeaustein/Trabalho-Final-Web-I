@@ -58,5 +58,7 @@ router.delete("/lists/:id", listController.deleteList);
 router.get("/lists/:listId/products", listController.listProductsInList);
 // Rota para calcular o valor total de uma lista:
 router.get("/lists/:listId/total", listController.calculateTotalValueOfList); // Nova rota para calcular o total
+// Rota para obter uma lista pelo ID (novo endpoint):
+router.get("/lists/:listId", listController.getListById); // Adicionando a rota para obter lista pelo ID
 
 module.exports = router;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Usuário</title>
+  <link rel="stylesheet" href="cadatroUsuario.css">
+</head>
+<body>
+
+  <!-- Título fora do contêiner -->
+  <h1>Gerenciador de Listas de Compras</h1>
+
+  <!-- Modal de sucesso/erro -->
+  <div id="statusModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('statusModal')">&times;</span>
+      <p id="statusMessage"></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Cadastrar Usuário</h2>
+    <form id="registerForm">
+      <label for="name">Nome:</label>
+      <input type="text" id="name" name="name" required><br><br>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="password">Senha:</label>
+      <input type="password" id="password" name="password" required><br><br>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+    <button onclick="window.location.href='../login/login.html'">Já tenho conta</button>
+  </div>
+
+  <script src="cadastroUsuario.js"></script>
+</body>
+</html>

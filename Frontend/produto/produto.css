@@ -1,0 +1,221 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Container principal */
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalhos */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Botões */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+#newProductButton {
+    background-color: #4CAF50; /* Verde */
+}
+
+#newProductButton:hover {
+    background-color: #4CAF50; /* Sem hover */
+}
+
+#editProductButton {
+    background-color: #17a2b8;
+}
+
+#editProductButton:hover {
+    background-color: #138496;
+}
+
+#categoryForm button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+/* Formulário de produto */
+#productForm {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+input, select {
+    padding: 8px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+input[type="text"], input[type="number"] {
+    width: 100%;
+}
+
+select {
+    width: 100%;
+}
+
+/* Formulário de categorias */
+#categoryForm {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Ajuste para o select de produtos e categoria */
+#productSelectContainer {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+#categorySelect {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#addCategoryButton {
+    display: inline-block;
+}
+
+/* Estilos para os botões */
+#submitButton {
+    background-color: #4CAF50; /* Cor verde */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+
+#submitButton:hover {
+    background-color: #45a049; /* Cor verde mais escura ao passar o mouse */
+}
+
+/* Formatação para a seção de adicionar produto */
+.add-product-section {
+    margin-top: 20px;
+}
+
+.add-product-section select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 10px;
+}
+
+.add-product-section button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.add-product-section button:hover {
+    background-color: #45a049;
+}
+
+/* Modais */
+#statusModal, #errorModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+}
+
+.modal-content .close:hover {
+    color: #333;
+}
+
+#statusModal .modal-content button, #errorModal .modal-content button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#statusModal .modal-content button:hover, #errorModal .modal-content button:hover {
+    background-color: #45a049;
+}
+
+#statusModal .modal-content button:active, #errorModal .modal-content button:active {
+    background-color: #388e3c;
+}
